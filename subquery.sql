@@ -1,0 +1,1 @@
+select *'Highest amount '
