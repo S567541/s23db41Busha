@@ -1,1 +1,0 @@
-select *'Highest amount '
