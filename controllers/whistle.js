@@ -19,3 +19,14 @@ res.send('NOT IMPLEMENTED: whistle delete DELETE ' + req.params.id);
 exports.whistle_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: whistle update PUT' + req.params.id);
 };
+exports.whistle_list = async function(req, res) {
+    try{
+    thewhistle = await whistle.find();
+    res.send(thewhistle);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
