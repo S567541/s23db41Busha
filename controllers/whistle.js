@@ -10,14 +10,14 @@ res.send('NOT IMPLEMENTED: whistle detail: ' + req.params.id);
 // Handle whistle create on POST.
 exports.whistle_create_post = async function(req, res) {
     console.log(req.body)
-let document = new Costume();
+let document = new whistle();
 // We are looking for a body, since POST does not have query parameters.
 // Even though bodies can be in many different formats, we will be picky
 // and require that it be a json object
-// {"costume_type":"goat", "cost":12, "size":"large"}
-document.costume_type = req.body.costume_type;
-document.cost = req.body.cost;
-document.size = req.body.size;
+// {"whistle_type":"goat", "cost":12, "size":"large"}
+document.WhistleId = req.body.whistle_type;
+document.Whistle_Price = req.body.Whistle_Price;
+document.Whistle_Style = req.body.Whistle_Style;
 try{
 let result = await document.save();
 res.send(result);
