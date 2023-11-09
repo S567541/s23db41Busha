@@ -3,7 +3,7 @@ extends layout
 block content
   
   h1= title
-  - let results=[{ WhistleId: "WI09", Whistle_Price: 80, Whistle_Style: "red" },{ WhistleId: "WI88", Whistle_Price: 72, Whistle_Style: "white" },{ WhistleId: "WI13", Whistle_Price: 55, Whistle_Style: "red" }]
+  - let results=whistlelist
   div(class="container-fluid")
   div(class="row")
    each value,index in results
