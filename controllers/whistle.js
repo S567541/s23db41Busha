@@ -4,9 +4,16 @@ exports.whistle_list = function(req, res) {
 res.send('NOT IMPLEMENTED: whistle list');
 };
 // for a specific whistle.
-exports.whistle_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: whistle detail: ' + req.params.id);
-};
+exports.whistle_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await whistle.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
 // Handle whistle create on POST.
 exports.whistle_create_post = async function(req, res) {
     console.log(req.body)
@@ -32,9 +39,25 @@ exports.whistle_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: whistle delete DELETE ' + req.params.id);
 };
 // Handle whistle update form on PUT.
-exports.whistle_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: whistle update PUT' + req.params.id);
-};
+exports.whistle_update_put =async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await whistle.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.WhistleId)
+    toUpdate.WhistleId = req.body.WhistleId;
+    if(req.body.Whistle_Price) toUpdate.Whistle_Price = req.body.Whistle_Price;
+    if(req.body.Whistle_Style) toUpdate.Whistle_Style = req.body.Whistle_Style;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
+    };
 exports.whistle_list = async function(req, res) {
     try{
     thewhistle = await whistle.find();
