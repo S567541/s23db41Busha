@@ -35,8 +35,16 @@ res.send(`{"error": ${err}}`);
 }
 };
 // Handle whistle delete form on DELETE.
-exports.whistle_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: whistle delete DELETE ' + req.params.id);
+exports.whistle_delete =async function(req, res) {
+    console.log("delete " + req.params.id)
+try {
+result = await whistle.findByIdAndDelete( req.params.id)
+console.log("Removed " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": Error deleting ${err}}`);
+}
 };
 // Handle whistle update form on PUT.
 exports.whistle_update_put =async function(req, res) {
