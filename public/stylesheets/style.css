@@ -10,4 +10,33 @@ a {
   background-color: aquamarine;
   width: 120px;
 }
-  
+.container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px honeydew;
+}
+
+.col-md-6
+{
+  background-color: mediumturquoise;
+}
+
+button {
+  cursor: pointer;
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+button.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+button.btn-danger:hover,
+button.btn-secondary:hover {
+  filter: brightness(90%);
+} 

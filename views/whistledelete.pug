@@ -10,21 +10,29 @@ block content
     - let Whistle_Style = toShow.Whistle_Style
     - let actionid = "/resource/whistle/" + id
     script let actionid = "#{actionid}"
-    div
-      div.row
-        div(class='whistleAttr mr-3') ID is:
-        div #{id}
-      div.row
-        div(class='whistleAttr mr-3') Whistle Id is:
-        div #{WhistleId}
-      div.row
-        div(class='whistleAttr mr-3') Whistle Price is:
-        div #{Whistle_Price} 
-      div.row
-        div(class='whistleAttr mr-3') Whistle Style is:
-        div #{Whistle_Style}     
-    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
-    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    .container.mt-4
+      .row
+        .col-md-6
+          p#id-label ID:
+          p#id-content #{id}
+
+        .col-md-6
+          p#whistleId-label Whistle ID:
+          p#whistleId-content #{WhistleId}
+
+      .row
+        .col-md-6
+          p#price-label Price:
+          p#price-content #{Whistle_Price}
+
+        .col-md-6
+          p#style-label Style:
+          p#style-content #{Whistle_Style}
+
+      .row.mt-3
+        .col
+          button.btn.btn-danger.mr-2(onclick="deleteOnid()") Delete
+          button.btn.btn-secondary(onclick="cancel()") Cancel
   script.
     function cancel() {
       // Go back to the home page for the whistle collection
