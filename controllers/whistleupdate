@@ -1,0 +1,14 @@
+var whistle = require('../models/whistle');
+// Handle building the view for updating a whistle.
+// query provides the id
+exports.whistle_update_Page = async function(req, res) {
+console.log("update view for item "+req.query.id)
+try{
+let result = await whistle.findById(req.query.id)
+res.render('whistleupdate', { title: 'whistle Update', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};

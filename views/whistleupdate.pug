@@ -1,0 +1,42 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to Update
+  else
+    - let id = toShow._id
+    - let WhistleId = toShow.WhistleId
+    - let Whistle_Price = toShow.Whistle_Price
+    - let Whistle_Style = toShow.Whistle_Style
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{id}
+    - let actionid = "/resource/whistle/" + id
+    form(id='whistleForm', action=actionid, method="PUT")
+      div.form-group
+        label.whistleAttr(for='WhistleId') whistle ID
+        input#WhistleId(type='text', name='WhistleId', value=WhistleId)
+      div.form-group
+        label.whistleAttr(for='Whistle_Price') whistle Price
+        input#Whistle_Price(type='number', name='Whistle_Price', value=Whistle_Price)
+      div.form-group
+        label.whistleAttr(for='Whistle_Style') whistle Style
+        input#Whistle_Style(type='text', name='Whistle_Style', value=Whistle_Style)
+      input(type="submit")
+    script.
+      document.forms['whistleForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+          // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeded")
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error )
+        });
+      });
