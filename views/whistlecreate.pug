@@ -1,0 +1,31 @@
+extends layout
+block content
+  h1= title
+  form(id='whistleForm', action="/resource/whistle", method="POST")
+    div.form-group
+      label.whistleAttr(for='WhistleId') whistle Id
+      input#WhistleId(type='text', name='WhistleId')
+    div.form-group
+      label.whistleAttr(for='whistleprice') whistle Price
+      input#whistleprice(type='text', name='whistleprice')
+    div.form-group
+      label.whistleAttr(for='Whistle_Style') whistle Style
+      input#Whistle_Style(type='text', name='Whistle_Style')
+    input(type="submit")
+  script.
+    document.forms['whistleForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error )
+      });
+    });
