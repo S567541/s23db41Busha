@@ -3,6 +3,7 @@ const whistle_controlers= require('../controllers/whistle');
 const whistledetail_controlers= require('../controllers/whistledetail');
 const whistlecreate_controller= require('../controllers/whistlecreate');
 const whistleupdate_controller= require('../controllers/whistleupdate');
+const whistledelete_controller= require('../controllers/whistledelete');
 
 var router = express.Router();
 
@@ -12,7 +13,7 @@ var router = express.Router();
 router.get('/detail', whistledetail_controlers.whistle_view_one_Page);
 router.get('/create', whistlecreate_controller.whistle_create_Page);
 router.get('/update', whistleupdate_controller.whistle_update_Page);
-
+router.get('/delete', whistledelete_controller.whistle_delete_Page);
 
 
 module.exports = router

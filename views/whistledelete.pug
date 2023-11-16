@@ -1,0 +1,50 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let id = toShow._id
+    - let WhistleId = toShow.WhistleId
+    - let Whistle_Price = toShow.Whistle_Price
+    - let Whistle_Style = toShow.Whistle_Style
+    - let actionid = "/resource/whistle/" + id
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='whistleAttr mr-3') ID is:
+        div #{id}
+      div.row
+        div(class='whistleAttr mr-3') Whistle Id is:
+        div #{WhistleId}
+      div.row
+        div(class='whistleAttr mr-3') Whistle Price is:
+        div #{Whistle_Price} 
+      div.row
+        div(class='whistleAttr mr-3') Whistle Style is:
+        div #{Whistle_Style}     
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+  script.
+    function cancel() {
+      // Go back to the home page for the whistle collection
+      //window.location.href='/whistle'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+      method: 'DELETE' // Don't need a body for the delete
+      }).then((resp) => {
+      return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+      alert("Delete succeded")
+      //window.location.href='/whistle'
+      // TODO handle body
+      }).catch((error) => {
+      // TODO handle error
+      console.log(error);
+      alert("Delete failed " + error )
+      });
+    }
