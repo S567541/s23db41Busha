@@ -4,12 +4,18 @@ block content
   
   h1= title
   - let results=whistlelist
+  - let cbutton = `dispatch(\"/whistle/create\")`
+  button.btn( class="btn-primary ml-1", onclick= cbutton) Create
   div(class="container-fluid")
   div(class="row m-1")
     each value,index in results
       - let destination = `dispatch(\"/whistle/update?id=${value._id}\")`
+      - let dtbutton = `dispatch(\"/whistle/detail?id=${value._id}\")`
+      - let dlbutton = `dispatch(\"/whistle/delete?id=${value._id}\")`
       div(class="col-sm-2 m-1" onclick=`buy(${index})`)  Whistle ID:#{value.WhistleId} , price : #{value.Whistle_Price}, Style: #{value.Whistle_Style}<br>
         button.btn( class="btn-primary ml-1", onclick= destination) Update
+        button.btn( class="btn-primary ml-1", onclick= dtbutton) Detail
+        button.btn( class="btn-primary ml-1", onclick= dlbutton) Delete
   script.
     function buy(index)
     {
