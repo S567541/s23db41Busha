@@ -19,11 +19,11 @@ var router = express.Router();
 
 /* GET home page. */
   router.get('/', whistle_controlers.whistle_view_all_Page );
-/* GET detail costume page */
+/* GET detail Whistle page */
 router.get('/detail', whistledetail_controlers.whistle_view_one_Page);
-router.get('/create', whistlecreate_controller.whistle_create_Page);
+router.get('/create',secured, whistlecreate_controller.whistle_create_Page);
 router.get('/update',secured, whistleupdate_controller.whistle_update_Page);
-router.get('/delete', whistledelete_controller.whistle_delete_Page);
+router.get('/delete',secured, whistledelete_controller.whistle_delete_Page);
 
 
 module.exports = router
